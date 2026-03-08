@@ -37,6 +37,4 @@ fi
 mkdir -p ./AppDir/bin
 bsdtar -xvf /tmp/app.zip -C .
 bsdtar -xvf ./BanjoRecompiled.tar.gz -C ./AppDir/bin
-mv -v ./BanjoRecomp/BanjoRecompiled ./AppDir/bin
-mv -v ./BanjoRecomp/assets ./AppDir/bin
 wget -q -O ./AppDir/bin/recompcontrollerdb.txt https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt
