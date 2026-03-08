@@ -27,7 +27,7 @@ case "$ARCH" in # they use X64 and ARM64 for the zip links
 	aarch64) zip_arch=Linux-ARM64;;
 esac
 ZIP_LINK=$(wget -qO- https://api.github.com/repos/BanjoRecomp/BanjoRecomp/releases \
-      | sed 's/[()",{} ]/\n/g' | grep -i "https://github.com\.zip" | head -n 1)
+      | sed 's/[()",{} ]/\n/g' | grep -o -m 1 "https.*$zip_arch.zip")
 echo "$ZIP_LINK" | grep -oP 'v\K[\d.]+' > ~/version
 if ! wget --retry-connrefused --tries=30 "$ZIP_LINK" -O /tmp/app.zip 2>/tmp/download.log; then
 	cat /tmp/download.log
