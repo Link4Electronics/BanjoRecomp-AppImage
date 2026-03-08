@@ -23,11 +23,11 @@ get-debloated-pkgs --add-common --prefer-nano
 echo "Getting app..."
 echo "---------------------------------------------------------------"
 case "$ARCH" in # they use X64 and ARM64 for the zip links
-	x86_64)  deb_arch=X64;;
-	aarch64) deb_arch=ARM64;;
+	x86_64)  zip_arch=Linux-X64;;
+	aarch64) zip_arch=Linux-ARM64;;
 esac
 ZIP_LINK=$(wget https://api.github.com/repos/BanjoRecomp/BanjoRecomp/releases -O - \
-      | sed 's/[()",{} ]/\n/g' | grep -o -m 1 "https.*$deb_arch.zip")
+      | sed 's/[()",{} ]/\n/g' | grep -o -m 1 "https.*$zip_arch.zip")
 echo "$ZIP_LINK" | grep -oP 'v\K[\d.]+' > ~/version
 if ! wget --retry-connrefused --tries=30 "$ZIP_LINK" -O /tmp/app.zip 2>/tmp/download.log; then
 	cat /tmp/download.log
